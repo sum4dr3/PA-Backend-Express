@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const libroRoutes = require('./routes/libros');
-var cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 9000;
 
 // MIDDLEWARE
+app.use(cors());
 app.use(express.json());
 app.use('/api', libroRoutes);
 
@@ -17,12 +18,15 @@ var corsOptions = {
     optionsSuccessStatus: 200 
   }
 
-app.get("/", cors(corsOptions),(req,res) =>{
-    res.send("Bienvenido a mi api");
+app.get("/", (req,res) =>{
+    res.send("<h1>Bienvenido a mi api</h1>");
 });
+
+/*
 app.listen(80, function () {
     console.log('CORS-enabled web server listening on port 80')
-  })
+})
+*/
 
 // MONGO DB CONEXION
 

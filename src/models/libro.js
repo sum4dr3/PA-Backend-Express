@@ -19,6 +19,10 @@ const libroSchema = mongoose.Schema({
     descripcion: {
         type: String,
         require: false
+    },
+    precio: {
+        type: Number,
+        require: true
     }
 });
 
