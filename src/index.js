@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const libroRoutes = require('./routes/libros');
+require('dotenv').config(); 
 const cors = require('cors');
 
 const app = express();
@@ -14,12 +15,12 @@ app.use('/api', libroRoutes);
 
 // ROUTES
 var corsOptions = {
-    origin: '0.0.0.0',
-    optionsSuccessStatus: 200 
-  }
+  origin: '0.0.0.0',
+  optionsSuccessStatus: 200 
+}
 
 app.get("/", (req,res) =>{
-    res.send("<h1>Bienvenido a mi api</h1>");
+  res.send("<h1>Bienvenido a mi api</h1>");
 });
 
 /*
@@ -31,9 +32,9 @@ app.listen(80, function () {
 // MONGO DB CONEXION
 
 mongoose
-    .connect("mongodb+srv://dieferman:yZish3aW0OBce2Gc@cluster0.yhu6c0j.mongodb.net/?retryWrites=true&w=majority")
-    .then(() => console.log("Connectado a la bd"))
-    .catch((error) => console.error(error));
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log("Connectado a la bd"))
+  .catch((error) => console.error(error));
 
 app.listen(port, () => console.log("server Funciona", port));
 

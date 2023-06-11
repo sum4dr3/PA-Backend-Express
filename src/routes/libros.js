@@ -1,7 +1,7 @@
 const express = require("express");
 const libroSchema = require("../models/libro");
 const router = express.Router();
-
+const librosController = require("../controllers/libros");
 
 // CREAR LIBRO
 router.post('/libros', (req, res) =>{
@@ -39,5 +39,9 @@ router.post("/autor", (req, res) =>{
     .then((data) => res.json(data))
     .catch((error) => res.json({ message : error }));
 });
+
+// Ruta con controllador
+
+router.get("/data", librosController.Libros)
 
 module.exports = router;
